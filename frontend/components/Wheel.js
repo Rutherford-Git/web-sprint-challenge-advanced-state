@@ -1,6 +1,18 @@
 import React from 'react'
+import { moveClockwise } from '../state/action-creators'
+import {moveCounterClockwise} from '../state/action-creators'
 
 export default function Wheel(props) {
+  
+ function clockwise (evt){
+    const { set } = evt.target
+     moveClockwise({ set })
+  }
+
+  function counterclockwise (evt){
+    const { set } = evt.target
+     moveCounterClockwise({ set })
+  }
   return (
     <div id="wrapper">
       <div id="wheel">
@@ -12,8 +24,8 @@ export default function Wheel(props) {
         <div className="cog" style={{ "--i": 5 }}></div>{/* --i is a custom CSS property, no need to touch that nor the style object */}
       </div>
       <div id="keypad">
-        <button id="counterClockwiseBtn" >Counter clockwise</button>
-        <button id="clockwiseBtn">Clockwise</button>
+        <button onClick={counterclockwise} id="counterClockwiseBtn" >Counter clockwise</button>
+        <button onClick={clockwise} id="clockwiseBtn">Clockwise</button>
       </div>
     </div>
   )

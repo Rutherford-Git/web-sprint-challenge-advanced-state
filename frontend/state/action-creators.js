@@ -2,13 +2,15 @@
 import * as types from "./action-types"
 
 // ❗ You don't need to add extra action creators to achieve MVP
-export function moveClockwise() {
-  return { type: types.MOVE_CLOCKWISE }
+export function moveClockwise(set) {
+  console.log('red')
+  return { type: types.MOVE_CLOCKWISE, payload: {set} }
  }
 
-export function moveCounterClockwise() { 
-  return { type: types.MOVE_COUNTERCLOCKWISE }
-}
+export function moveCounterClockwise(set) { 
+  console.log('blue')
+  return { type: types.MOVE_CLOCKWISE, payload: {set} }
+ }
 
 export function selectAnswer() { 
   return { type: types.SET_SELECTED_ANSWER }
@@ -33,6 +35,7 @@ export function resetForm() {
 // ❗ Async action creators
 export function fetchQuiz() {
   return function (dispatch) {
+
     // First, dispatch an action to reset the quiz state (so the "Loading next quiz..." message can display)
     // On successful GET:
     // - Dispatch an action to send the obtained quiz to its state
