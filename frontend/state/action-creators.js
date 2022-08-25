@@ -3,8 +3,8 @@ import * as types from "./action-types"
 
 // ❗ You don't need to add extra action creators to achieve MVP
 export function moveClockwise(set) {
-  console.log('red')
-  return { type: types.MOVE_CLOCKWISE, payload: {set} }
+  const MoveRight = set + 1
+  return { type: types.MOVE_CLOCKWISE, payload: {MoveRight} }
  }
 
 export function moveCounterClockwise(set) { 

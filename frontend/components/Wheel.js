@@ -2,6 +2,7 @@ import React from 'react'
 import { moveClockwise } from '../state/action-creators'
 import {moveCounterClockwise} from '../state/action-creators'
 
+
 export default function Wheel(props) {
   
  function clockwise (evt){
