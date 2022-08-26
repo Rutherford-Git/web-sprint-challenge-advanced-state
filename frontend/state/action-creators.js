@@ -1,36 +1,29 @@
-/* import { types } from "@babel/core" */
-import * as types from "./action-types"
-
 // ❗ You don't need to add extra action creators to achieve MVP
-export function moveClockwise(set) {
-  console.log('red')
-  return { type: types.MOVE_CLOCKWISE, payload: {set} }
- }
+import * as types from './action-types'
+/* import { MOVE_CLOCKWISE } from "./action-types" */
 
-export function moveCounterClockwise(set) { 
-  console.log('blue')
-  return { type: types.MOVE_CLOCKWISE, payload: {set} }
- }
-
-export function selectAnswer() { 
-  return { type: types.SET_SELECTED_ANSWER }
+export function moveClockwise() { 
+  console.log('step 1')
+  return ({type: types.MOVE_CLOCKWISE})
 }
 
-export function setMessage() {
-  return { type: types.SET_INFO_MESSAGE }
- }
+export function moveCounterClockwise() {
+  return ({type: types.MOVE_COUNTERCLOCKWISE})
+}
+
+export function selectAnswer(evt) { 
+  return ({type: types.SET_SELECTED_ANSWER, payload: evt})
+}
+
+export function setMessage() { }
 
 export function setQuiz() { 
-  return { type: types.SET_QUIZ_INTO_STATE }
+  return ({type: types.SET_QUIZ_INTO_STATE})
 }
 
-export function inputChange() {
-  return { type: types.INPUT_CHANGE }
- }
+export function inputChange() { }
 
-export function resetForm() { 
-  return { type: types.RESET_FORM }
-}
+export function resetForm() { }
 
 // ❗ Async action creators
 export function fetchQuiz() {

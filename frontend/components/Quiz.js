@@ -1,6 +1,18 @@
 import React from 'react'
+import { connect } from 'react-redux';
+import * as actions from '../state/action-creators'
+import { selectAnswer } from '../state/action-creators';
 
-export default function Quiz(props) {
+
+export function Quiz(props) {
+  const {state} = props
+
+  const handleSelect = ()=> {
+    selectedAnswer()
+  }
+  const handleSubmit = ()=>{
+    props.setQuiz(state)
+  }
   return (
     <div id="wrapper">
       {
@@ -12,23 +24,24 @@ export default function Quiz(props) {
             <div id="quizAnswers">
               <div className="answer selected">
                 A function
-                <button>
+                <button onClick={handleSelect}>
                   SELECTED
                 </button>
               </div>
 
               <div className="answer">
                 An elephant
-                <button>
+                <button onClick={handleSelect}>
                   Select
                 </button>
               </div>
             </div>
 
-            <button id="submitAnswerBtn">Submit answer</button>
+            <button onClick={handleSubmit} id="submitAnswerBtn">Submit answer</button>
           </>
         ) : 'Loading next quiz...'
       }
     </div>
   )
 }
+export default connect(st => st, actions)(Quiz)

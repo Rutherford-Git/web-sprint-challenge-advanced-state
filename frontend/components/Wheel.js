@@ -1,27 +1,34 @@
 import React from 'react'
-import { moveClockwise } from '../state/action-creators'
-import {moveCounterClockwise} from '../state/action-creators'
+import { connect } from 'react-redux';
+import * as actions from '../state/action-creators'
 
-export default function Wheel(props) {
-  
- function clockwise (evt){
-    const { set } = evt.target
-     moveClockwise({ set })
+export function Wheel(props) {
+  /* const [state, dispatch] = useReducer(moveClockwise, initialWheelState) */
+const {wheelState} = props
+
+ function clockwise (){
+  const setActive = document.getElementById(wheelState)
+    props.moveClockwise(()=>{
+      wheelState === setActive?
+      setActive.classList.add('cog active'):
+      null
+    })
   }
 
-  function counterclockwise (evt){
-    const { set } = evt.target
-     moveCounterClockwise({ set })
+  
+
+  function counterclockwise (){
+     props.moveCounterClockwise()
   }
   return (
     <div id="wrapper">
       <div id="wheel">
-        <div className="cog active" style={{ "--i": 0 }}>B</div>
-        <div className="cog" style={{ "--i": 1 }}></div>
-        <div className="cog" style={{ "--i": 2 }}></div>
-        <div className="cog" style={{ "--i": 3 }}></div>
-        <div className="cog" style={{ "--i": 4 }}></div>
-        <div className="cog" style={{ "--i": 5 }}></div>{/* --i is a custom CSS property, no need to touch that nor the style object */}
+        <div id={0} className="cog active" style={{ "--i": 0 }}>B</div>
+        <div id={1} className="cog" style={{ "--i": 1 }}></div>
+        <div id={2} className="cog" style={{ "--i": 2 }}></div>
+        <div id={3} className="cog" style={{ "--i": 3 }}></div>
+        <div id={4} className="cog" style={{ "--i": 4 }}></div>
+        <div id={5} className="cog" style={{ "--i": 5 }}></div>{/* --i is a custom CSS property, no need to touch that nor the style object */}
       </div>
       <div id="keypad">
         <button onClick={counterclockwise} id="counterClockwiseBtn" >Counter clockwise</button>
@@ -30,3 +37,10 @@ export default function Wheel(props) {
     </div>
   )
 }
+/* const mapStateToProps = state =>{
+  return{
+    index: state.index
+  }
+}
+ */
+export default connect(st => st, actions)(Wheel)
