@@ -1,14 +1,15 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import * as actions from '../state/action-creators'
-import { selectAnswer } from '../state/action-creators';
+
 
 
 export function Quiz(props) {
+ 
   const {state} = props
 
   const handleSelect = ()=> {
-    selectedAnswer()
+    props.selectAnswer()
   }
   const handleSubmit = ()=>{
     props.setQuiz(state)
@@ -17,19 +18,19 @@ export function Quiz(props) {
     <div id="wrapper">
       {
         // quiz already in state? Let's use that, otherwise render "Loading next quiz..."
-        true ? (
+        props.quiz ? (
           <>
             <h2>What is a closure?</h2>
 
             <div id="quizAnswers">
-              <div className="answer selected">
+              <div id={'answer'} className="answer selected">
                 A function
                 <button onClick={handleSelect}>
                   SELECTED
                 </button>
               </div>
 
-              <div className="answer">
+              <div id={'answer'} className="answer">
                 An elephant
                 <button onClick={handleSelect}>
                   Select
@@ -44,4 +45,6 @@ export function Quiz(props) {
     </div>
   )
 }
+
+
 export default connect(st => st, actions)(Quiz)

@@ -6,18 +6,15 @@ const initialWheelState = 0
 function wheel(state = initialWheelState, action) {
   switch (action.type) {
     case types.MOVE_CLOCKWISE: 
-  return state + 1; 
+  return state === 5? state = 0: state + 1 
     case types.MOVE_COUNTERCLOCKWISE: 
-  return state -1; 
+  return state === 0? state = 5: state - 1  
   default:
     return state
   }
 }
 
-const initialQuizState = {
-  answer1: false,
-  answer2: false
-}
+const initialQuizState = null
 function quiz(state = initialQuizState, action) {
   switch (action.type) {
     case types.SET_QUIZ_INTO_STATE: 
@@ -36,11 +33,14 @@ function selectedAnswer(state = initialSelectedAnswerState, action) {
   }
 
 
-const initialMessageState = ''
+const initialMessageState = 'nice job'
 function infoMessage(state = initialMessageState, action) {
-/*   switch (action.type) {
-    case SET_INFO_MESSAGE: */
-  return state
+  switch (action.type) {
+    case types.SET_INFO_MESSAGE:
+  return action.payload
+  default:
+      return state
+ }
 }
 
 const initialFormState = {
@@ -49,15 +49,21 @@ const initialFormState = {
   newFalseAnswer: '',
 }
 function form(state = initialFormState, action) {
-/*   switch (action.type) {
-    case INPUT_CHANGE: 
-  return state
+  switch (action.type) {
+    case types.INPUT_CHANGE:
+      const red = action.payload
     
-    case RESET_FORM:
-  return state
+
   
-} */
-return state
+    case types.RESET_FORM:
+  return {
+    newQuestion: '',
+    newTrueAnswer: '',
+    newFalseAnswer: '',
+    }
+  default:
+    return state
+}
 }
 
 export default combineReducers({ wheel, quiz, selectedAnswer, infoMessage, form })

@@ -1,27 +1,34 @@
 // ❗ You don't need to add extra action creators to achieve MVP
 import * as types from './action-types'
-/* import { MOVE_CLOCKWISE } from "./action-types" */
 
 export function moveClockwise() { 
-  console.log('step 1')
+  console.log('clockwise action working')
   return ({type: types.MOVE_CLOCKWISE})
 }
 
 export function moveCounterClockwise() {
+  console.log('counter clockwise action working')
   return ({type: types.MOVE_COUNTERCLOCKWISE})
 }
 
-export function selectAnswer(evt) { 
-  return ({type: types.SET_SELECTED_ANSWER, payload: evt})
+export function selectAnswer(ans) { 
+  console.log('select action working')
+  return ({type: types.SET_SELECTED_ANSWER, payload: ans})
 }
 
-export function setMessage() { }
+export function setMessage(msg) {
+  return ({type: types.SET_INFO_MESSAGE, payload: msg})
+ }
 
-export function setQuiz() { 
-  return ({type: types.SET_QUIZ_INTO_STATE})
+export function setQuiz(quiz) { 
+  console.log('set action working')
+  return ({type: types.SET_QUIZ_INTO_STATE, payload: quiz })
 }
 
-export function inputChange() { }
+export function inputChange(value) { 
+  console.log('set action working')
+  return ({type: types.INPUT_CHANGE, payload: value})
+}
 
 export function resetForm() { }
 
