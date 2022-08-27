@@ -25,12 +25,15 @@ export function setQuiz(quiz) {
   return ({type: types.SET_QUIZ_INTO_STATE, payload: quiz })
 }
 
-export function inputChange(value) { 
+export function inputChange({key, value}) { 
   console.log('set action working')
-  return ({type: types.INPUT_CHANGE, payload: value})
+  return ({type: types.INPUT_CHANGE, payload: {key, value}})
 }
 
-export function resetForm() { }
+export function resetForm() { 
+  console.log('form reset')
+  return ({type: types.RESET_FORM})
+}
 
 // ❗ Async action creators
 export function fetchQuiz() {

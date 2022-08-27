@@ -8,8 +8,10 @@ export function Quiz(props) {
  
   const {state} = props
 
-  const handleSelect = ()=> {
-    props.selectAnswer()
+  const handleSelect = (evt)=> {
+    const id = evt.target
+    props.selectAnswer(id)
+    console.log(id)
   }
   const handleSubmit = ()=>{
     props.setQuiz(state)
@@ -18,19 +20,19 @@ export function Quiz(props) {
     <div id="wrapper">
       {
         // quiz already in state? Let's use that, otherwise render "Loading next quiz..."
-        props.quiz ? (
+        /* props.quiz */ true ? (
           <>
             <h2>What is a closure?</h2>
 
             <div id="quizAnswers">
-              <div id={'answer'} className="answer selected">
+              <div className="answer selected">
                 A function
                 <button onClick={handleSelect}>
                   SELECTED
                 </button>
               </div>
 
-              <div id={'answer'} className="answer">
+              <div className="answer">
                 An elephant
                 <button onClick={handleSelect}>
                   Select
