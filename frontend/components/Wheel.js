@@ -2,11 +2,20 @@ import React from 'react'
 import {connect} from 'react-redux'
 import * as actions from '../state/action-creators'
 
+<<<<<<< HEAD
 export function Wheel(props) {
   const {wheel} = props;
 
  function clockwise (){
      props.moveClockwise()
+=======
+
+export default function Wheel(props) {
+  
+ function clockwise (evt){
+    const { set } = evt.target
+     moveClockwise({ set })
+>>>>>>> eaed0afaced922d25427cb9cc252a11086a5ec8c
   }
 
   function counterclockwise (){
