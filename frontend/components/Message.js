@@ -2,11 +2,13 @@ import React from 'react'
 import { connect } from 'react-redux';
 import * as actions from '../state/action-creators'
 
-export function Message(props) {
+export class Message extends React.Component {
   
- const {infoMessage} = props;
   
-  return <div id="message">{infoMessage}</div>
+ 
+ render(){
+  return <div id="message">{this.props.infoMessage}</div>
+ }
 }
 
 export default connect(st => st, actions)(Message)

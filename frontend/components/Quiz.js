@@ -3,50 +3,51 @@ import { connect } from 'react-redux';
 import * as actions from '../state/action-creators'
 
 
+export class Quiz extends React.Component {
 
-export function Quiz(props) {
- 
-  const {state} = props
-
-  const handleSelect = (evt)=> {
+/*   handleSelect = (evt)=> {
     const id = evt.target
-    props.selectAnswer(id)
+    this.props.selectAnswer(id)
     console.log(id)
+    console.log(this.props.quiz)
+    console.log(this.props)
   }
-  const handleSubmit = ()=>{
-    props.setQuiz(state)
+  handleSubmit = ()=>{
+    this.props.setQuiz()
   }
+ */
+  render(){
   return (
     <div id="wrapper">
       {
         // quiz already in state? Let's use that, otherwise render "Loading next quiz..."
-        /* props.quiz */ true ? (
+        /* !this.props.quiz */true ? (
           <>
             <h2>What is a closure?</h2>
 
             <div id="quizAnswers">
               <div className="answer selected">
                 A function
-                <button onClick={handleSelect}>
+                <button /* onClick={this.handleSelect} */>
                   SELECTED
                 </button>
               </div>
 
               <div className="answer">
                 An elephant
-                <button onClick={handleSelect}>
+                <button /* onClick={this.handleSelect} */>
                   Select
                 </button>
               </div>
             </div>
 
-            <button onClick={handleSubmit} id="submitAnswerBtn">Submit answer</button>
+            <button /* onClick={this.handleSubmit} */ id="submitAnswerBtn">Submit answer</button>
           </>
         ) : 'Loading next quiz...'
       }
     </div>
   )
+    }
 }
-
 
 export default connect(st => st, actions)(Quiz)
