@@ -1,4 +1,6 @@
 import React from 'react'
+import {connect} from 'react-redux'
+import * as actions from '../state/action-creators'
 
 export default function Quiz(props) {
   return (
