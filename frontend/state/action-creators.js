@@ -37,29 +37,44 @@ export function resetForm() {
 }
 
 // ❗ Async action creators
-/* export function fetchQuiz() {
+export function fetchQuiz() {
   return function (dispatch) {
-    dispatch(setQuiz(true));
+    dispatch(setQuiz(null));
 
-    axios
-      .get('http://localhost:9000/api/quiz/next')
-      .then(res=>{
-        console.log(res.data)
+     axios.get('http://localhost:9000/api/quiz/next')
+      .then( res=>{
+         console.log(res.data) 
+        // dispatch(setQuiz(res.data)) 
+        const newQuiz =({type: types.SET_QUIZ_INTO_STATE, payload: res.data })
+        dispatch(newQuiz)
       })
       .catch(err=>{
         console.log(err)
-      }) */
+      }) 
     // First, dispatch an action to reset the quiz state (so the "Loading next quiz..." message can display)
     // On successful GET:
     // - Dispatch an action to send the obtained quiz to its state
-/*   }
-} */
-export function postAnswer() {
+   }
+} 
+export function postAnswer(a1,b2) {
   return function (dispatch) {
     // On successful POST:
     // - Dispatch an action to reset the selected answer state
     // - Dispatch an action to set the server message to state
     // - Dispatch the fetching of the next quiz
+    axios
+    .post('http://localhost:9000/api/quiz/answer', { 
+      'quiz_id': `${a1}`, 
+      'answer_id': `${b2}`, 
+    })
+    .then(res =>{
+      console.log(res)
+      dispatch(setMessage(res.data.message))
+      dispatch(fetchQuiz())
+    })
+    .catch(err=>{
+      console.log(err)
+    })
   }
 }
 export function postQuiz(a1,b2,b3) {
@@ -69,14 +84,14 @@ export function postQuiz(a1,b2,b3) {
     // - Dispatch the resetting of the form 
     axios
     .post('http://localhost:9000/api/quiz/new', { 
-      question_text: `${a1}`, 
-      true_answer_text: `${b2}`, 
-      false_answer_text: `${b3}` 
+      'question_text': `${a1}`, 
+      'true_answer_text': `${b2}`, 
+      'false_answer_text': `${b3}` 
     })
     .then(res=>{
-      console.log(res.data)
+      console.log(res)
+      dispatch(setMessage(`Congrats: "${res.data.question}" is a great question!`))
       dispatch(resetForm())
-      dispatch(setMessage(`Congrats: "${a1}" is a great question!`))
     })
     .catch(err=>{
       console.log(err)

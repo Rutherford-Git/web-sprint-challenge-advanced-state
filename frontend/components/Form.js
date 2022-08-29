@@ -1,9 +1,8 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import * as actionCreators from '../state/action-creators'
+import { connect } from 'react-redux';
+import * as actions from '../state/action-creators'
 
 export class Form extends React.Component {
-  /* const {form} = props */
  
 onChange = evt => {   
     const key = evt.target.id
@@ -14,17 +13,13 @@ onChange = evt => {
 onSubmit = evt => {
  evt.preventDefault();
  console.log(this.props)
- 
  this.props.postQuiz(
     this.props.form.newQuestion, 
     this.props.form.newTrueAnswer, 
     this.props.form.newFalseAnswer
-  )
-  console.log(this.props)
-  }
+  )}
   
-  render(){
-
+render(){  
   return (
     <form id="form" onSubmit={this.onSubmit}>
       <h2>Create New Quiz</h2>
@@ -39,4 +34,4 @@ onSubmit = evt => {
 }
 }
 
-export default connect(st => st, actionCreators)(Form)
+export default connect(st => st, actions)(Form)

@@ -5,12 +5,12 @@ import * as actions from '../state/action-creators'
 export function Wheel(props) {
 const {wheel} = props
 
- function clockwise (){
-    props.moveClockwise()
+function clockwise (){
+  props.moveClockwise()
   }
 
-  function counterclockwise (){
-     props.moveCounterClockwise()
+function counterclockwise (){
+  props.moveCounterClockwise()
   }
   return (
     <div id="wrapper">
