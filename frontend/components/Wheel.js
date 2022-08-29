@@ -13,8 +13,6 @@ function counterclockwise (){
   props.moveCounterClockwise()
 }
 
-
-
   return (
     <div id="wrapper">
       <div id="wheel">

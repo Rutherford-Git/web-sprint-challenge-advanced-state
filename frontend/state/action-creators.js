@@ -9,7 +9,7 @@ export function moveClockwise() {
 
 export function moveCounterClockwise() { 
   console.log()
-  return { type: types.MOVE_CLOCKWISE }
+  return { type: types.MOVE_COUNTERCLOCKWISE }
  }
 
 
