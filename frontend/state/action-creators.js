@@ -7,10 +7,11 @@ export function moveClockwise() {
   return ({type: types.MOVE_CLOCKWISE})
 }
 
-export function moveCounterClockwise() {
-  console.log('counter clockwise action working')
-  return ({type: types.MOVE_COUNTERCLOCKWISE})
-}
+export function moveCounterClockwise() { 
+  console.log()
+  return { type: types.MOVE_CLOCKWISE }
+ }
+
 
 export function selectAnswer(ans) { 
   console.log('select action working')
@@ -19,7 +20,7 @@ export function selectAnswer(ans) {
 
 export function setMessage(msg) {
   return ({type: types.SET_INFO_MESSAGE, payload: msg})
- }
+}
 
 export function setQuiz(quizstate) { 
   console.log('set action working')
@@ -77,6 +78,7 @@ export function postAnswer(a1,b2) {
     })
   }
 }
+
 export function postQuiz(a1,b2,b3) {
   return function (dispatch) {
     // On successful POST:
@@ -93,9 +95,6 @@ export function postQuiz(a1,b2,b3) {
       dispatch(setMessage(`Congrats: "${res.data.question}" is a great question!`))
       dispatch(resetForm())
     })
-    .catch(err=>{
-      console.log(err)
-    })
-  }
-}
+  }}
+
 // ❗ On promise rejections, use log statements or breakpoints, and put an appropriate error message in state

@@ -29,9 +29,10 @@ render(){
       <button disabled={
         !(this.props.form.newFalseAnswer.trim().length && this.props.form.newTrueAnswer.trim().length && this.props.form.newQuestion.trim().length) 
         } id="submitNewQuizBtn">Submit new quiz</button>
-    </form>
-  )
+        </form>)
 }
 }
 
+
 export default connect(st => st, actions)(Form)
+
